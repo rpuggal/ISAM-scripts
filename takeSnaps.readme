@@ -1,0 +1,49 @@
+This readme provides a script for taking snapshots of the ISAM virtual appliances in an automated fashion. Most of the options for the script are in the supporting properties file for example dev-snapshot.properties for DEV and so on. The properties file has name/value pairs such as below:
+
+BACKUP_ROOT=/apps/scripts/poc
+#BACKDIR="/BACKUP/POC/${TODAY}/"
+DOMAIN=".gwl.bz"
+ADMUSER=admin
+ADMPASS=ISAMd3v
+WEBSEAL_HOSTS=lciamapd1
+POLICY_HOSTS=lciamapd1
+NOTIFY=raman.puggal@gwl.ca
+
+The properties file to use is specified at the top of the script:
+
+PROPS_FILE=/apps/scripts/dev-snapshot.properties
+
+Update this variable for the upstream environments along with setting up a properties file for each environment.
+All these variables will need to be customized for each environment for example the ISAM Admin user and password, Webseal and Policy server hosts etc.You can also update the notification email by updating the NOTIFY variable. the script only notifies the email address specified in the properties file if something goes wrong while taking the snapshot.
+
+To run, 
+
+chmod 755 takeSnaps.sh
+./takeSnaps.sh 
+
+Output snapshot will be stored in a <hostname>.zip file under a timestamped folder that is a subfolder of the <BACKUP_ROOT> folder.As an example:
+
+[pugram@lciamldd1 /apps/scripts/poc/20160211_103059]$ ls -l
+total 10460
+-rw-r--r-- 1 pugram pugram 10707952 Feb 11 10:31 lciamapd1.zip
+[pugram@lciamldd1 /apps/scripts/poc/20160211_103059]$
+
+
+Sample output from running the script is written to the console:
+
+[pugram@lciamldd1 /apps/scripts]$ ./takeSnaps.sh
+admin
+Taking snapshot of Policy server
+  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
+                                 Dload  Upload   Total   Spent    Left  Speed
+100   134  100    96  100    38     49     19  0:00:02  0:00:01  0:00:01    49
+  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
+                                 Dload  Upload   Total   Spent    Left  Speed
+  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0
+Policy and Webseal are on same host - running in DEV/FIT
+ Skipping webseals ...
+ Snapshot file(s) are stored in /apps/scripts/poc/20160211_131446
+Exiting ...
+
+
+

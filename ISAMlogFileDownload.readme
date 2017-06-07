@@ -1,0 +1,70 @@
+This README provides the script for downloading and clearing the request logs on the Webseal instances. The script uses a properties file for its configuration for example dev-WebSEALInstances.properties. The properties file that the script is currently using needs to be specified at the top of the script.
+
+Property_file_path=/apps/scripts/dev-WebSEALInstances.properties
+
+The properties file has all the name/value pairs for the environment configuration of the script itself.
+
+ ###################################WebSEAL Instances Properties #############################################
+
+Server1=https://lciamapd1/reverseproxy_logging/instance/
+#Server2=https://lciamapd2/reverseproxy_logging/instance/
+##Specify the instances Name one by one ##
+Instances:server1
+Intranet_LC_mgmt
+Intranet_LC_SOA
+ENDInstances1
+##Instances Specification ends here ##
+##Final Log file path ##
+Destination=/apps/scripts/WebSEAL_Logs/Daily/
+##EveryDay Request.log file path##
+Destinationpath=//apps/scripts/WebSEAL_Logs/Daily/Backup
+##Login User Credentials##
+UserName=admin
+Password=ISAMd3v
+
+Update the variables for each environment by first cloning the template properties file and giving it an environment specific name.
+Also specify all the webseal instances whose request logs need to be managed in the appropriate stanzas. for example:
+
+Instances:server1
+Intranet_LC_mgmt
+Intranet_LC_SOA
+ENDInstances1
+
+In cases where there are more Virtual appliances like UAT and PROD add a stanza for each VA/server. By default there is only one Server stanza.
+
+To run, 
+
+chmod 755 ISAMlogFileDownload.sh
+./ISAMlogFileDownload.sh 
+
+Sample output: 
+
+[pugram@lciamldd1 /apps/scripts]$ ./ISAMlogFileDownload.sh
+Script to download WebSEAL request.log file Everyday---------------------------------------
+
+Ignore command not found errors related to WebSEAL instances.
+/apps/scripts/dev-WebSEALInstances.properties: line 6: Instances:server1: command not found
+/apps/scripts/dev-WebSEALInstances.properties: line 7: Intranet_LC_mgmt: command not found
+/apps/scripts/dev-WebSEALInstances.properties: line 8: Intranet_LC_SOA: command not found
+/apps/scripts/dev-WebSEALInstances.properties: line 9: ENDInstances1: command not found
+200
+Downloaded request log to Intranet_LC_mgmt_request.log ...
+000--user200
+200
+Downloaded request log to Intranet_LC_SOA_request.log ...
+000--user200
+ERROR: File *_request.log does not exist.
+
+In the case above the request logs were empty so there was nothing to download. the script will error out in that case and not make any changes to the VA. The output is also logged to a timestamped logfile under :
+
+/apps/scripts/WebSEAL_Logs/Daily/log/Download-2016-02-11-13-22-39.log as an example.
+
+2016-02-11-13:22:39 Log Managegement tool started.
+2016-02-11-13:22:40 Downloaded request log to Intranet_LC_mgmt_request.log ...
+2016-02-11-13:22:40 Downloaded request log to Intranet_LC_SOA_request.log ...
+2016-02-11-13:22:40 File *_request.log does not exist.
+
+In normal runs, the request logs will be populated so the above output should never be seen. The script will download and compress the logs to the /apps/scripts/WebSEAL_Logs/Daily/Backup folder and timestamp it as below:
+
+Archive_20160127.gz 
+
