@@ -2,12 +2,8 @@ This readme provides a script for taking snapshots of the ISAM virtual appliance
 
 BACKUP_ROOT=/apps/scripts/poc
 #BACKDIR="/BACKUP/POC/${TODAY}/"
-DOMAIN=".gwl.bz"
 ADMUSER=admin
-ADMPASS=ISAMd3v
-WEBSEAL_HOSTS=lciamapd1
-POLICY_HOSTS=lciamapd1
-NOTIFY=raman.puggal@gwl.ca
+
 
 The properties file to use is specified at the top of the script:
 
@@ -23,15 +19,15 @@ chmod 755 takeSnaps.sh
 
 Output snapshot will be stored in a <hostname>.zip file under a timestamped folder that is a subfolder of the <BACKUP_ROOT> folder.As an example:
 
-[pugram@lciamldd1 /apps/scripts/poc/20160211_103059]$ ls -l
+[pugram@xxxxxxx /apps/scripts/poc/20160211_103059]$ ls -l
 total 10460
 -rw-r--r-- 1 pugram pugram 10707952 Feb 11 10:31 lciamapd1.zip
-[pugram@lciamldd1 /apps/scripts/poc/20160211_103059]$
+[pugram@xxxxxxx /apps/scripts/poc/20160211_103059]$
 
 
 Sample output from running the script is written to the console:
 
-[pugram@lciamldd1 /apps/scripts]$ ./takeSnaps.sh
+[pugram@xxxxxxx /apps/scripts]$ ./takeSnaps.sh
 admin
 Taking snapshot of Policy server
   % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
