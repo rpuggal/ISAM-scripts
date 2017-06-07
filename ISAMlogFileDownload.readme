@@ -6,8 +6,8 @@ The properties file has all the name/value pairs for the environment configurati
 
  ###################################WebSEAL Instances Properties #############################################
 
-Server1=https://lciamapd1/reverseproxy_logging/instance/
-#Server2=https://lciamapd2/reverseproxy_logging/instance/
+Server1=https://xxxx/reverseproxy_logging/instance/
+#Server2=https://xxxxx/reverseproxy_logging/instance/
 ##Specify the instances Name one by one ##
 Instances:server1
 Intranet_LC_mgmt
@@ -20,7 +20,7 @@ Destination=/apps/scripts/WebSEAL_Logs/Daily/
 Destinationpath=//apps/scripts/WebSEAL_Logs/Daily/Backup
 ##Login User Credentials##
 UserName=admin
-Password=ISAMd3v
+Password=yyyyyyy
 
 Update the variables for each environment by first cloning the template properties file and giving it an environment specific name.
 Also specify all the webseal instances whose request logs need to be managed in the appropriate stanzas. for example:
@@ -39,7 +39,7 @@ chmod 755 ISAMlogFileDownload.sh
 
 Sample output: 
 
-[pugram@lciamldd1 /apps/scripts]$ ./ISAMlogFileDownload.sh
+[pugram@servera /apps/scripts]$ ./ISAMlogFileDownload.sh
 Script to download WebSEAL request.log file Everyday---------------------------------------
 
 Ignore command not found errors related to WebSEAL instances.
