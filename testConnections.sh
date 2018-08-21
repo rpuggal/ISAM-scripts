@@ -2,7 +2,7 @@
 #set -x
 
 ADMUSER="admin"
-PWD="admin2"
+PWD="xxxxxx"
 TIMEOUT=2
 
 function runConnect {
@@ -15,8 +15,7 @@ function runConnect {
     echo;
 }
 
-#runConnect ciaisapp0157.sys.cigna.com 10.37.152.147 8443
-#runConnect ciaisapp0157.sys.cigna.com 10.37.152.163 8443
+
 
 function readFile {
      infile=$1
