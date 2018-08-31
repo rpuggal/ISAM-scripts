@@ -12,9 +12,9 @@ echo
 echo INITIALIZING VARIABLES...
 echo
 echo
-RPINSTANCE=spb-dev2
+RPINSTANCE=
 #NEWRPINSTANCE=
-SHAREDOBJECTSPACE=spb-dev2
+SHAREDOBJECTSPACE=
 #NEWRPINSTANCE=$RPINSTANCE
 RPIP=0.0.0.0
 #RPIP=10.20.134.39
@@ -25,7 +25,7 @@ RPLMIHOST=xxxx
 HOMEDIR=/home/ivmgr/
 HTTPSPORT=8475
 INSTANCEHOME=$HOMEDIR/$RPINSTANCE
-ISAMZIP=spb-dev2_isam9export.zip
+ISAMZIP=xxx-dev2_isam9export.zip
 ZIPFILENAME=$RPINSTANCE.zip
 
 }
@@ -42,8 +42,8 @@ echo
 echo
 # This command is unable to accept variables in the -d parameter for some reason.
 # Therefore everything in the -d parameter must be hardcoded for now, until we figure it out.
-curl -H 'Accept:application/json' -k -u $USERNAME:$PASS -X POST https://$RPLMIHOST/wga/reverseproxy -d '{"inst_name":"stage-yourcareallies","host":"ciaisapd0055.sys.cigna.com","listening_port
-":"7236","domain":"default9","admin_id":"sec_master","admin_pwd":"Tam123","ssl_yn":"yes","key_file":"ldap_ssl.kdb","ssl_port":"636","http_yn":"no","http_port":"80","https_yn":"yes","https_por
+curl -H 'Accept:application/json' -k -u $USERNAME:$PASS -X POST https://$RPLMIHOST/wga/reverseproxy -d '{"inst_name":"stage-yourcareallies","host":"xxxx.xxxx.xxxx.com","listening_port
+":"7236","domain":"default9","admin_id":"sec_master","admin_pwd":"xxxxxxxx","ssl_yn":"yes","key_file":"ldap_ssl.kdb","ssl_port":"636","http_yn":"no","http_port":"80","https_yn":"yes","https_por
 t":"8445","nw_interface_yn":"yes","ip_address":"10.20.134.39"}'
 echo
 echo
